@@ -10,7 +10,7 @@ Sammlung aller Skripte und Komponenten, welche für das [Masterlabor: Maschinell
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a></center>
 
-Zur Vorbereitung auf das Labor, soll zunächst das Tutorial [Tutorial_Skript_Programmierung_NN](/Programmierung/Tutorial_Skript_Programmierung_NN.ipynb) berarbeitet werden. Dies kann auch direkt auf Google Colab geöffnet werden.
+Zur Vorbereitung auf das Labor, soll zunächst das Tutorial [`Tutorial_Skript_Programmierung_NN.ipynb`](/Programmierung/Tutorial_Skript_Programmierung_NN.ipynb) berarbeitet werden. Dies kann auch direkt auf Google Colab geöffnet werden.
 
 Alle weiteren Informationen können dem Skript für die Veranstaltung entnommen werden.
 
@@ -20,7 +20,7 @@ Alle weiteren Informationen können dem Skript für die Veranstaltung entnommen 
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a></center>
 
-Zur weiteren Vorbereitung auf den Versuch, ist es ebenso möglich, die Vorlage für Prorammierung bereits in Colab oder auf dem lokalen System zu nutzen.
+Zur weiteren Vorbereitung auf den Versuch, ist es ebenso möglich, die [`Vorlage_Programmierung_NN.ipynb`](/Programmierung/Vorlage_Programmierung_NN.ipynb) für Prorammierung bereits in Colab oder auf dem lokalen System zu nutzen.
 
 
 ### Verwendung von Keras Applications
@@ -53,7 +53,7 @@ Es existieren viele untetrschiedliche Möglichkeiten um fertig trainierte Modell
 [TensorFlow Serving](https://github.com/tensorflow/serving) bietet eine weitere Möglichkeit Machine Learning Modelle mit relativ geringem Aufwand auf einer Vielzahl unterschiedlichster System zu deployen. Im Rahmen des MLL wird TensorFlow Serving verwendet um die trainierten Netze auf einem leistungsstarken Computer zur Verfügung zu stellen. Mit Hilfe der bereitgestellten [RestAPI](https://www.tensorflow.org/tfx/serving/api_rest) können Anfragen für die Objekterkennung vom Raspberry Pi aus gemacht werden.
 
 #### Anlegen der .credentials Datei
-In order to use the [mountshare.sh](/Steuerung_Versuchsstand/Serving/mountshare.sh), [runserving.sh](/Steuerung_Versuchsstand/Serving/runserving.sh) and [mllapi.py](/Steuerung_Versuchsstand/Serving/mllapi.py) script, a file named ".credentials" must exist in the same folder. As this file contains secrets, is must be manually edited from the [.credentials_template](/Steuerung_Versuchsstand/Serving/.credentials_template):
+Um die [`mountshare.sh`](/Steuerung_Versuchsstand/Serving/mountshare.sh), [`runserving.sh`](/Steuerung_Versuchsstand/Serving/runserving.sh) und [`mllapi.py`](/Steuerung_Versuchsstand/Serving/mllapi.py) Skripte nutzen zu können, ist die Datei `.credentials` erforderlich und muss im selten Ordner wie die Skripte liegen. Da diese Datei sensitve Daten beinhaltet, muss diese händisch aus der Datei [`.credentials_template`](/Steuerung_Versuchsstand/Serving/.credentials_template) erstellt werden:
 
 ```bash
 # .credentials - CIFS Mount Configuration
@@ -73,12 +73,10 @@ username="your_username"
 # CIFS password for authentication
 password="your_password"
 ```
-
-Edit the template file and save it as '.credentials'. For example `mv .credentials_template .credentials` and then `nano .credentials` and edit the variables.
-
+Die Template Datei kann zunächst mit `mv .credentials_template .credentials` umbenannt und anschließend mit `nano .credentials` bearbeitet werden.
 #### Install Flask
 
-In order to use the [mllapi.py](/Steuerung_Versuchsstand/Serving/mllapi.py) Flask must be installed in the desired python environment:
+Um [`mllapi.py`](/Steuerung_Versuchsstand/Serving/mllapi.py) nutzen zu können, muss Flask in dem entsprechenden python environment installiert sein:
 
 ```bash
 pip install Flask
@@ -86,9 +84,9 @@ pip install Flask
 
 #### Install Docker
 
-To run the TensorFlow Serving Container, the Docker Engine must be installed as per the [Docker Engine install instructions](https://docs.docker.com/engine/install/). Once installed, further [Post-installation Steps](https://docs.docker.com/engine/install/linux-postinstall/) should be done to ensure docker works as intended.
+Um den TensorFlow Serving Container ausführen zu können, muss zunächst die Docker Engine installiert sein (Siehe [Docker Engine install instructions](https://docs.docker.com/engine/install/)). Sobald diese installiert ist, sollten die folgenden weiteren Schritte ausgeführt werden um sicherzustellen, dass Docker wie gewollt funktioniert [Post-installation Steps](https://docs.docker.com/engine/install/linux-postinstall/).
 
-To verify, that the docker installation was successfull, run the following commands, to launch a TensorFlow Serving Container:
+Um zu prüfen, dass Docker richtig installiert wurde, kann abschließend der folgende Befehl ausgeführt werden:
 
 ```bash
 # Download the TensorFlow Serving Docker image and repo
@@ -113,7 +111,7 @@ curl -d '{"instances": [1.0, 2.0, 5.0]}' \
 
 ### mllapi.py
 
-Die [mllapi.py](/Steuerung_Versuchsstand/Serving/mllapi.py) stetllt einen Flask-Webserver zur Verfügung, welcher die folgenden Dienste anbietet:
+Die [`mllapi.py`](/Steuerung_Versuchsstand/Serving/mllapi.py) stetllt einen Flask-Webserver zur Verfügung, welcher die folgenden Dienste anbietet:
 
 - GET ***/create_config***: Erstellt, basierend auf den Inhalten des Netze Ordners, eine Konfigurationsdatei. Diese wird verwendet um den TensorFlow Serving Docker Container zu starten. Dieser Dienste sollte einmal ausgeführt werden, bevor der TensorFlow Serving Container gestartet wird, bei dem Hinzufügen weitere Netze, ist dies erneut notwendig.
   
@@ -138,7 +136,6 @@ cd Steuerung_Versuchsstand/Raspberry/
 # use pip to install from file
 pip install -r requirements.txt
 ```
-
 
 Anschließend sollte [`sortierung.py`](/Steuerung_Versuchsstand/Raspberry/sortierung.py) und [`datensatzaufnahme.py`](/Steuerung_Versuchsstand/Raspberry/datensatzaufnahme.py) verwendet werden können. Eventuell müssen diese jedoch noch mit `chmod` ausführbar gemacht werden (`chmod +x sortierung.py`) und gestartet werden können (`./sortierung.py`). Alterantiv können diese wie gewohnt mit dem `python` Befehl gestartet werden (`python sortierung.py`). Zur schnellen Verwendung, sind weiterhin zwei Shortcuts zur Verfügung gestellt, welche ggf. leicht angepasst werden müssen.
 

@@ -166,7 +166,5 @@ cython_debug/
 /Programmierung/logs/*
 /Datensatzaufnahme/*
 
-/Programmierung/Vorlagen
-
 .credentials
 .secret

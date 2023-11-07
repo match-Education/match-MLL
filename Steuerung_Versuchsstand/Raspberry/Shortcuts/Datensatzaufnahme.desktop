@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Datensatzaufnahme
+Comment=launch Datensatzaufnahme.py
+Path=/home/ML_Labor/MLL/Steuerung_Versuchsstand
+Exec=/home/ML_Labor/MLL/Steuerung_Versuchsstand/datensatzaufnahme.py
+Icon=/home/ML_Labor/Icon.png
+Terminal=false
+Type=Application
+X-KeepTerminal=false

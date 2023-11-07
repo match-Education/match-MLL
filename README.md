@@ -5,20 +5,18 @@
 Sammlung aller Skripte und Komponenten, welche für das [Masterlabor: Maschinelles Lernern in der Produktionstechnik](https://www.match.uni-hannover.de/de/studium/lehrveranstaltungen/masterlabor-maschinelles-lernen-in-der-produktionstechnik) am [Insitut für Montagetechnik (match)](https://www.match.uni-hannover.de/) der [Universtität Hannover (LUH)](https://www.uni-hannover.de/) genutzt werden.
 
 ## Tutorial
-
-<center><a target="_blank" href="https://colab.research.google.com/github/match-Education/match-MLL/Programmierung/Tutorial_Skript_Programmierung_NN.ipynb">
+<p align="center"><a target="_blank" href="https://colab.research.google.com/github/match-Education/match-MLL/blob/main/Programmierung/Tutorial_Skript_Programmierung_NN.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a></center>
+</a></p>
 
 Zur Vorbereitung auf das Labor, soll zunächst das Tutorial [`Tutorial_Skript_Programmierung_NN.ipynb`](/Programmierung/Tutorial_Skript_Programmierung_NN.ipynb) berarbeitet werden. Dies kann auch direkt auf Google Colab geöffnet werden.
 
 Alle weiteren Informationen können dem Skript für die Veranstaltung entnommen werden.
 
 ## Programmierung
-
-<center><a target="_blank" href="https://colab.research.google.com/github/match-Education/match-MLL/Programmierung/Vorlage_Programmierung_NN_COLAB.ipynb">
+<p align="center"><a target="_blank" href="https://colab.research.google.com/github/match-Education/match-MLL/blob/main/Programmierung/Vorlage_Programmierung_NN.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a></center>
+</a></p>
 
 Zur weiteren Vorbereitung auf den Versuch, ist es ebenso möglich, die [`Vorlage_Programmierung_NN.ipynb`](/Programmierung/Vorlage_Programmierung_NN.ipynb) für Prorammierung bereits in Colab oder auf dem lokalen System zu nutzen.
 
@@ -122,7 +120,7 @@ Es ist möglich die Dienste auch manuell zu nutzen, etwa in einem Browser oder m
 ```bash
 curl http://HOSTNAME/get_models
 ```
-
+(HOSTNAME entspricht der IP-Adresse oder dem hostname des jeweligen Servers, es ist sicherzustellen, dass dieser erreichbar ist!)
 ### Raspberry GUIs
 
 #### Installtion notweniger Python Pakete mit PIP

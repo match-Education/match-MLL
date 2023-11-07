@@ -121,17 +121,39 @@ Es ist möglich die Dienste auch manuell zu nutzen, etwa in einem Browser oder m
 curl http://HOSTNAME/get_models
 ```
 (HOSTNAME entspricht der IP-Adresse oder dem hostname des jeweligen Servers, es ist sicherzustellen, dass dieser erreichbar ist!)
+
+Um die `models.config` Datei zu erstellen, welche notwendig ist, um den TensorFlow Serving Container zu starten, muss der folgende Befehl einmal auf dem entsprechenden Gerät ausgeführt werden:
+
+```bash
+curl http://localhast/create_config
+```
+
+Dieser erstellt, basierend auf dem Inhalten auf dem gewählten Speicherpfad, anschließend eine config Datei, welche alle zur Verfügung stehende Netze beinhaltet.
+
+### TensorFlow Serving Container
+Der eigentliche Docker Container für das Remote Serving kann, sofern alle Anforderungen erfüllt sind, mit dem Skript [`runserving.sh`](/Steuerung_Versuchsstand/Serving/runserving.sh) oder dem folgenden Befehl gestaret werden:
+
+```bash
+docker run -t --rm -p 8501:8501 -v "$MODELPATH:/models/" tensorflow/serving:latest-gpu --model_config_file=/models/models.config --model_config_file_poll_wait_seconds=60 -d
+```
+Der gestartet Container verwendet die GPU und prüft im Intervall von 60 Sekunden auf neue Modelle/Netze, welche mit dem `create_config` API-Endpoint erstellt werden können.
+
 ### Raspberry GUIs
+
+Auf dem Raspberry Pi werden grunsätzlich zwei GUIs als Programme genutzt:
+
+- [`datensatzaufnahme.py`](/Steuerung_Versuchsstand/Raspberry/datensatzaufnahme.py) wird verwendet um mit Hilfe des Versuchsstandes Aufnahmen von Objekten zu machen. Diese werden entsprechend der gewählten Labels in Ordern auf dem Server abgelegt und können anschließend für das Training der künstlichen neuronalen Netze verwendet werden.
+- [`sortierungs.py`](/Steuerung_Versuchsstand/Raspberry/sortierung.py) kann verwendet werden, um mit Hilfe fertig trainierte Netze, Objekte auf dem Versuchsstand zu klassifierzen und entsprechend zu sortieren. Hierzu können sowohl lokal gespeicherte `.tflite` Modelle genutzt werden (Inference läuft auf Raspberry), oder auch native Keras-Modelle (in diesem Fall wird Remote Serving verwendet).
 
 #### Installtion notweniger Python Pakete mit PIP
 
 In den entsprechen Order wechseln und anschließend alle Pakete aus der [`requirements.txt`](/Steuerung_Versuchsstand/Raspberry/requirements.txt) installieren:
 
 ```bash
-# chance directory
+# change directory
 cd Steuerung_Versuchsstand/Raspberry/
 
-# use pip to install from file
+# use pip to install requirements from file
 pip install -r requirements.txt
 ```
 
@@ -140,8 +162,11 @@ Anschließend sollte [`sortierung.py`](/Steuerung_Versuchsstand/Raspberry/sortie
 
 ## Roadmap
 - [x] TensorFlow Serving implementieren
-- [ ] Übergabe von korrekten Labels bei Verwendung von Remote Serving
-- [ ] Alternative Implementierung PyTorch
+- [x] Notebooks Colab-fähig machen
+- [ ] Übergabe spezifischer Labels bei Verwendung von Remote Serving
+- [ ] Alternative Implementierung in PyTorch
+- [ ] Einfaches GUI für Serving-Funktionen erstellen
+- [ ] Netze bei Verwendung von Remote Serving auf Remote-Hostmachine kopieren. mllapi.py mit entsprechendem Befehl erweitern.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)

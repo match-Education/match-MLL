@@ -2,7 +2,7 @@
 
 ![MLL Coverfoto](Steuerung_Versuchsstand/Raspberry/mllcover.png)
 
-Sammlung aller Skripte und Komponenten, welche für das [Masterlabor: Maschinelles Lernern in der Produktionstechnik](https://www.match.uni-hannover.de/de/studium/lehrveranstaltungen/masterlabor-maschinelles-lernen-in-der-produktionstechnik) am [Insitut für Montagetechnik (match)](https://www.match.uni-hannover.de/) der [Universtität Hannover (LUH)](https://www.uni-hannover.de/) genutzt werden.
+Sammlung aller Programme und Komponenten, welche für das [Masterlabor: Maschinelles Lernern in der Produktionstechnik](https://www.match.uni-hannover.de/de/studium/lehrveranstaltungen/masterlabor-maschinelles-lernen-in-der-produktionstechnik) am [Insitut für Montagetechnik (match)](https://www.match.uni-hannover.de/) der [Universtität Hannover (LUH)](https://www.uni-hannover.de/) genutzt werden.
 
 ## Tutorial
 <p align="center"><a target="_blank" href="https://colab.research.google.com/github/match-Education/match-MLL/blob/main/Programmierung/Tutorial_Skript_Programmierung_NN.ipynb">
@@ -20,10 +20,12 @@ Alle weiteren Informationen können dem Skript für die Veranstaltung entnommen 
 
 Zur weiteren Vorbereitung auf den Versuch, ist es ebenso möglich, die [`Vorlage_Programmierung_NN.ipynb`](/Programmierung/Vorlage_Programmierung_NN.ipynb) für Prorammierung bereits in Colab oder auf dem lokalen System zu nutzen.
 
+Auch hierfür ist das Skript der Veranstaltung für weitere Hinweise zu beachten.
+
 
 ### Verwendung von Keras Applications
 
-Zum Vergleich verschiedener State of the Art Modelle, können [Keras Appliacations](https://keras.io/api/applications/) verwendet werden. Die ermöglichen es, eine Vielzahl unterschiedlicher Machine Learning Modelle schnell und einfach zu nutzen.
+Zum Vergleich verschiedener State of the Art Modelle, können [Keras Applications](https://keras.io/api/applications/) verwendet werden. Die ermöglichen es, eine Vielzahl unterschiedlicher Machine Learning Modelle schnell und einfach zu nutzen.
 
 Die Verwendung ist in der Keras Dokumentation beschrieben. Es Gilt zu beachten, dass die Modelle eine jeweils spezifische Eingabegröße erwarten. Somit ist es gegenfalls notwendig, die Bilder des Datensatzes entsprechend zu resizen. Die gewünschten Dimensionne können mit Hilfe der `model.summary()` ermittelt werden:
 
@@ -46,7 +48,7 @@ Der systematische Aufbau des Versuchsstandes ist in der der folgenden Abbildung 
 
 ### Remote Serving
 
-Es existieren viele untetrschiedliche Möglichkeiten um fertig trainierte Modelle im produktiven Betrieb zu nutzen. Häufig werden hierzu Services wie etwa [Amazon SakeMaker](https://aws.amazon.com/de/sagemaker/) genutzt.
+Es existieren viele untetrschiedliche Möglichkeiten um fertig trainierte Modelle im produktiven Betrieb zu nutzen. Häufig werden hierzu Services wie etwa [Amazon SageMaker](https://aws.amazon.com/de/sagemaker/) genutzt.
 
 [TensorFlow Serving](https://github.com/tensorflow/serving) bietet eine weitere Möglichkeit Machine Learning Modelle mit relativ geringem Aufwand auf einer Vielzahl unterschiedlichster System zu deployen. Im Rahmen des MLL wird TensorFlow Serving verwendet um die trainierten Netze auf einem leistungsstarken Computer zur Verfügung zu stellen. Mit Hilfe der bereitgestellten [RestAPI](https://www.tensorflow.org/tfx/serving/api_rest) können Anfragen für die Objekterkennung vom Raspberry Pi aus gemacht werden.
 

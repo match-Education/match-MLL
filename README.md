@@ -53,7 +53,7 @@ Es existieren viele untetrschiedliche Möglichkeiten um fertig trainierte Modell
 [TensorFlow Serving](https://github.com/tensorflow/serving) bietet eine weitere Möglichkeit Machine Learning Modelle mit relativ geringem Aufwand auf einer Vielzahl unterschiedlichster System zu deployen. Im Rahmen des MLL wird TensorFlow Serving verwendet um die trainierten Netze auf einem leistungsstarken Computer zur Verfügung zu stellen. Mit Hilfe der bereitgestellten [RestAPI](https://www.tensorflow.org/tfx/serving/api_rest) können Anfragen für die Objekterkennung vom Raspberry Pi aus gemacht werden.
 
 #### Anlegen der .credentials Datei
-Um die [`mountshare.sh`](/Steuerung_Versuchsstand/Serving/mountshare.sh), [`runserving.sh`](/Steuerung_Versuchsstand/Serving/runserving.sh) und [`mllapi.py`](/Steuerung_Versuchsstand/Serving/mllapi.py) Skripte nutzen zu können, ist die Datei `.credentials` erforderlich und muss im selten Ordner wie die Skripte liegen. Da diese Datei sensitve Daten beinhaltet, muss diese händisch aus der Datei [`.credentials_template`](/Steuerung_Versuchsstand/Serving/.credentials_template) erstellt werden:
+Um die [`mountshare.sh`](/Steuerung_Versuchsstand/Serving/mountshare.sh), [`launchcontainer.sh`](/Steuerung_Versuchsstand/Serving/launchcontainer.sh) und [`mllapi.py`](/Steuerung_Versuchsstand/Serving/mllapi.py) Skripte nutzen zu können, ist die Datei `.credentials` erforderlich und muss im selten Ordner wie die Skripte liegen. Da diese Datei sensitve Daten beinhaltet, muss diese händisch aus der Datei [`.credentials_template`](/Steuerung_Versuchsstand/Serving/.credentials_template) erstellt werden:
 
 ```bash
 # .credentials - CIFS Mount Configuration
@@ -133,7 +133,7 @@ curl http://localhast/create_config
 Dieser erstellt, basierend auf dem Inhalten auf dem gewählten Speicherpfad, anschließend eine config Datei, welche alle zur Verfügung stehende Netze beinhaltet.
 
 ### TensorFlow Serving Container
-Der eigentliche Docker Container für das Remote Serving kann, sofern alle Anforderungen erfüllt sind, mit dem Skript [`runserving.sh`](/Steuerung_Versuchsstand/Serving/runserving.sh) oder dem folgenden Befehl gestaret werden:
+Der eigentliche Docker Container für das Remote Serving kann, sofern alle Anforderungen erfüllt sind, mit dem Skript [`remoteserving.sh`](/Steuerung_Versuchsstand/Serving/remoteserving.sh) oder dem folgenden Befehl gestaret werden:
 
 ```bash
 docker run -t --rm -p 8501:8501 -v "$MODELPATH:/models/" tensorflow/serving:latest-gpu --model_config_file=/models/models.config --model_config_file_poll_wait_seconds=60 -d

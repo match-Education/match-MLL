@@ -94,6 +94,7 @@ def create_config():
 
 
 # TODO: Create endpoint to copy models from network drive to local drive
+# TODO: Test this
 @app.route("/copy_models", methods=["GET"])
 def copy_models():
     try:
